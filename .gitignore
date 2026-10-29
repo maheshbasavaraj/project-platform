@@ -1,0 +1,51 @@
+/f/AI Projects/project-platform
+dsds/
+game_MCP/
+SWE_QUIZ/
+data/
+# --- secrets: never commit ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+*credential*.json
+*serviceAccount*.json
+id_rsa*
+id_ed25519*
+*.sqlite
+*.db
+*.log
+# --- os / editor ---
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+~$*
+*.swp
+.idea/
+.vscode/
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg
+.tox/
+# --- node ---
+node_modules/
+.next/
+out/
+.cache/
+npm-debug.log*
+yarn-error.log*
+.turbo/
+coverage/

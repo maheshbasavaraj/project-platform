@@ -1,0 +1,7 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.0
+
+# Kept for the original Game Forge authoring/MCP tooling.
+# The unified student runtime does not require an MCP client.
+fastmcp>=2.10

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Game Forge · Learning Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/game-forge/static/styles.css">
+</head>
+<body class="gf">
+<div class="aurora" aria-hidden="true"><span></span><span></span></div>
+<div class="grid-lines" aria-hidden="true"></div>
+
+<div class="shell">
+  <header>
+    <a href="/" class="brand"><span class="mark">✦</span> Learning Platform</a>
+    <nav>
+      <a href="/">Hub</a>
+      <a href="/dsds/" data-accent="blue">Choose</a>
+      <a href="/swe-quiz/" data-accent="orange">Design</a>
+      <a href="/game-forge/docs">API</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker"><i class="live"></i> FASTAPI + GAME MCP</p>
+      <h1>Forge your own<br><em>learning game.</em></h1>
+      <p class="lead">FastAPI calls the Game Forge MCP tools. Choose a topic, preview the MCP generation prompt, then ask Ollama to build and save a playable HTML game.</p>
+      <div class="tool-row" id="toolRow"><span class="tool-chip">loading tools…</span></div>
+    </section>
+
+    <section class="forge-panel">
+      <div class="fp-head">
+        <h2>Forge a game</h2>
+        <span class="fp-hint">All fields feed the MCP prompt</span>
+      </div>
+      <form id="forge-form">
+        <label>Topic
+          <input name="topic" required minlength="2" maxlength="120" value="equivalent fractions" placeholder="e.g. equivalent fractions">
+        </label>
+        <label>Audience
+          <input name="audience" required maxlength="80" value="ages 8-12" placeholder="e.g. ages 8-12">
+        </label>
+        <label>Session minutes
+          <input name="session_minutes" type="number" min="3" max="60" value="7">
+          <span class="range-wrap"><input name="minutes_range" type="range" min="3" max="60" value="7" id="mins"></span>
+        </label>
+        <label class="check">
+          <input name="checklist" type="checkbox" checked>
+          <span>Run MCP review checklist</span>
+        </label>
+        <div class="actions">
+          <button class="button" type="submit"><span class="btn-spin" aria-hidden="true"></span>Generate game</button>
+          <button class="button light" id="preview" type="button">Preview MCP prompt</button>
+        </div>
+      </form>
+      <pre id="result" class="result" hidden></pre>
+    </section>
+
+    <section class="mcp-strip">
+      <div>
+        <h3>MCP endpoint</h3>
+        <code>/game-forge/mcp/</code>
+      </div>
+      <div>
+        <h3>Tools</h3>
+        <div class="tool-tags">
+          <code>build_game_prompt</code><code>save_game</code><code>review_checklist</code><code>list_games</code>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="section-title"><span>Saved games</span><b id="gameCount"></b></h2>
+    <section id="games" class="grid"><p class="loading">Loading games…</p></section>
+  </main>
+
+  <footer>Game Forge · <a href="/">Back to Learning Platform</a></footer>
+</div>
+
+<script src="/game-forge/static/app.js"></script>
+</body>
+</html>

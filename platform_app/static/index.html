@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learning Platform · Play, Choose, Design</title>
+<meta name="description" content="Three ways to build better thinking: play a concept, choose a structure, design a system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="grid-lines" aria-hidden="true"></div>
+
+<div class="platform-shell">
+  <header class="platform-nav">
+    <a href="/" class="platform-brand"><span class="mark">✦</span> Learning Platform</a>
+    <nav>
+      <a href="/game-forge/" data-accent="purple">Play</a>
+      <a href="/dsds/" data-accent="blue">Choose</a>
+      <a href="/swe-quiz/" data-accent="orange">Design</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="platform-hero">
+      <p class="eyebrow"><i class="live"></i> ONE FASTAPI LEARNING SPACE</p>
+      <h1>Three ways to build<br><em>better thinking.</em></h1>
+      <p class="lede">Play a concept, choose a structure, then design a system. Every experience now lives behind one platform and one browser origin — pick a lane below and start immediately, no signup.</p>
+      <div class="hero-stats" id="heroStats">
+        <div class="hstat"><b id="hsMods">3</b><span>modules, one origin</span></div>
+        <div class="hstat"><b id="hsScen">–</b><span>design scenarios</span></div>
+        <div class="hstat"><b id="hsQs">–</b><span>design decisions to make</span></div>
+      </div>
+    </section>
+
+    <section class="module-grid">
+      <a class="module-card purple" href="/game-forge/">
+        <div class="mc-glow" aria-hidden="true"></div>
+        <div class="mc-art" aria-hidden="true">
+          <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+          <span class="grid-dot d1"></span><span class="grid-dot d2"></span><span class="grid-dot d3"></span>
+        </div>
+        <span class="module-number">01 / PLAY</span>
+        <b class="module-icon">✧</b>
+        <h2>Game Forge</h2>
+        <p>Short browser games that teach one idea through action. Generate a topic, forge a playable game, ship it in a single file.</p>
+        <span class="module-link">Open Game Forge <i>→</i></span>
+      </a>
+
+      <a class="module-card blue" href="/dsds/">
+        <div class="mc-glow" aria-hidden="true"></div>
+        <div class="mc-art" aria-hidden="true">
+          <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span><span class="node n4"></span>
+          <span class="link l1"></span><span class="link l2"></span><span class="link l3"></span>
+        </div>
+        <span class="module-number">02 / CHOOSE</span>
+        <b class="module-icon">⌘</b>
+        <h2>Data Structure Design Studio</h2>
+        <p>Choose the right data structure as operations and constraints change. A progressive track from arrays to heaps.</p>
+        <span class="module-link">Open DSDS <i>→</i></span>
+      </a>
+
+      <a class="module-card orange" href="/swe-quiz/">
+        <div class="mc-glow" aria-hidden="true"></div>
+        <div class="mc-art" aria-hidden="true">
+          <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span>
+          <span class="bar b4"></span><span class="bar b5"></span>
+        </div>
+        <span class="module-number">03 / DESIGN</span>
+        <b class="module-icon">◈</b>
+        <h2>SWE Quiz</h2>
+        <p>Make software architecture choices and learn the trade-offs. Realistic projects across frontend, backend, data and infra.</p>
+        <span class="module-link">Open SWE Quiz <i>→</i></span>
+      </a>
+    </section>
+
+    <section class="how">
+      <h2 class="how-title">How a session flows</h2>
+      <ol class="how-steps">
+        <li><b>1</b><span><strong>Pick a lane</strong>Play a game, solve a structure decision, or take on a system design.</span></li>
+        <li><b>2</b><span><strong>Make the call</strong>Every question is a real trade-off, not a trivia recall.</span></li>
+        <li><b>3</b><span><strong>See the reasoning</strong>You get a score, an explanation, and the better option.</span></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <span>Learning Platform · FastAPI modules · Practice makes systems thinking.</span>
+    <span class="mono" id="year"></span>
+  </footer>
+</div>
+
+<script>
+// Pull real counts from each module's own API rather than faking them.
+const set=(id,v)=>{const el=document.getElementById(id); if(el) el.textContent=v;};
+Promise.allSettled([
+  fetch('/swe-quiz/api/scenarios').then(r=>r.json()).then(d=>{
+    const n=(d.scenarios||[]).length;
+    set('hsScen', n);
+    const qs=(d.scenarios||[]).reduce((a,s)=>a+(s.question_count||0),0);
+    set('hsQs', qs);
+  }),
+  fetch('/api/modules').then(r=>r.json()).then(d=>{
+    const m=(d.modules||[]).length;
+    set('hsMods', m||3);
+  })
+]).then(()=>{});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
